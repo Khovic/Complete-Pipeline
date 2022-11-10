@@ -42,6 +42,8 @@ module "eks" {
       instance_types = ["t2.small"]
     }
   }
+}
+
 
   resource "aws_eks_fargate_profile" "my-fp" {
   cluster_name           = "my-cluster"
@@ -52,5 +54,4 @@ module "eks" {
   selector {
     namespace = "fpns"
   }
-}
 }
