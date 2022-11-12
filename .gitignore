@@ -1,0 +1,3 @@
+.terraform/providers/*
+.terraform.lock.hcl
+.terraform/modules/modules.json
