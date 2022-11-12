@@ -1,0 +1,18 @@
+apiVersion: {{ .Values.ingressApiVersion }}
+kind: Ingress
+metadata:
+  name: {{ .Values.appName }}-ingress
+  namespace: {{ .Values.ingressNamespace }}
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingressHost }}
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.appName }}-service
+                port: 
+                  number: {{ .Values.servicePort }}
+            path: /

@@ -1,0 +1,24 @@
+# these are the default values, app-values.yaml overrides these.
+
+appName: appName
+appImage: khovic/node-js-app
+appVersion: latest
+appReplicas: 1
+containerPort: 8080 
+containerEnvVars:
+- name: ENV_VAR
+  value: "var_value"
+
+servicePort: 8080
+serviceType: ClusterIP
+
+ingressApiVersion: networking.k8s.io/v1
+ingressHost: host.com
+ingressNamespace: default
+
+configName: configname
+dbName: database
+dbServer: server
+
+secretName: app-secret
+secretData: {}

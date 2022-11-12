@@ -1,0 +1,33 @@
+architecture: replication
+
+auth:
+  rootPassword: "${MYSQL_ROOT_PASSWORD}"
+  database: db_name
+  username: ${DB_USER}
+  password: ${DB_PWD}
+
+global: 
+  storageClass: "gp2"
+
+image:
+  registry: docker.io
+  repository: bitnami/mysql
+  tag: 8.0.30-debian-11-r27
+
+primary:
+  persistence:
+    accessModes: ["ReadWriteOnce"]
+    # storage class for EKS volumes
+    storageClass: gp2
+    size: 2Gi
+
+secondary:
+  name: secondary
+  replicaCount: 2
+  persistence:
+    accessModes: ["ReadWriteOnce"]
+    # storage class for EKS volumes
+    storageClass: gp2-sec
+    size: 2Gi
+
+

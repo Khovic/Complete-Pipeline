@@ -42,16 +42,17 @@ module "eks" {
       instance_types = ["t2.small"]
     }
   }
-}
 
-
-  resource "aws_eks_fargate_profile" "my-fp" {
-  cluster_name           = "my-cluster"
-  fargate_profile_name   = "my-fp"
-  pod_execution_role_arn = aws_iam_role.example.arn
-  subnet_ids             = module.myapp-vpc.private_subnets
-
-  selector {
-    namespace = "fpns"
+   fargate_profiles = {
+    default = {
+      name = "my-fp"
+      selectors = [
+        {
+          namespace = "fpns"
+        }
+      ]
+    }
   }
+
+
 }

@@ -1,0 +1,36 @@
+# these are all the values required for a successful deployment of java-app on an LKE cluster.
+# in a real world scenerio this file would not be checked into a repository since username and passowrds are visible here.
+# rather this would serve as a template to be filled by the user and used locally. 
+
+appName: java-mysql-app
+appImage: 793430165820.dkr.ecr.eu-central-1.amazonaws.com/java-mysql-app
+appVersion: latest
+appReplicas: 3
+containerPort: 8080
+containerEnvVars:
+- name: DB_USER
+  value: ${DB_USER}
+- name: DB_PWD
+  value: ${DB_PWD}
+- name: DB_SERVER
+  value: "mysql-primary.default"
+- name: DB_NAME
+  value: ${DB_NAME}
+
+servicePort: 8080
+serviceType: ClusterIP
+ingressNamespace: fpns
+
+ingressApiVersion: networking.k8s.io/v1
+ingressHost: ade58cdf374354753828ed4a81ef92bc-555752791.eu-central-1.elb.amazonaws.com
+
+configName: java-app-config
+dbName: ${DB_NAME}
+dbServer: mysql-primary.default
+
+secretName: db-secret
+secretData: 
+  DB_USER: ${DB_USER}
+  DB_PWD: ${DB_PWD}
+  DB_NAME: ${DB_NAME}
+  MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

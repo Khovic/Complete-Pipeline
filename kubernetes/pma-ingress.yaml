@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phpmyadmin-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: a4611225c1bca43348c60b4f62818687-1929729509.eu-central-1.elb.amazonaws.com
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: phpmyadmin-service
+                port: 
+                  number: 8081
+            path: /pma
