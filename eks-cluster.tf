@@ -1,18 +1,3 @@
-resource "aws_iam_role" "example" {
-  name = "eks-fargate-profile-example"
-
-  assume_role_policy = jsonencode({
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Principal = {
-        Service = "eks-fargate-pods.amazonaws.com"
-      }
-    }]
-    Version = "2012-10-17"
-  })
-}
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.30.3"
@@ -32,21 +17,9 @@ module "eks" {
     dev = {
       min_size     = 1
       max_size     = 3
-      desired_size = 2
+      desired_size = 3
 
       instance_types = ["t2.small"]
     }
- 
-  }
-  fargate_profiles = {
-    default = {
-      name = "my-fp"
-      selectors = [
-        {
-          namespace = "fpns"
-        }
-      ]
-    }
   }
 }
-
