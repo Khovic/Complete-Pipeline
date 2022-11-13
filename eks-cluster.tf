@@ -18,6 +18,7 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSFargatePodExecutionR
   role       = aws_iam_role.example.name
 }
 
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.30.3"
@@ -37,13 +38,13 @@ module "eks" {
     dev = {
       min_size     = 1
       max_size     = 3
-      desired_size = 3
+      desired_size = 2
 
       instance_types = ["t2.small"]
     }
+ 
   }
-
-   fargate_profiles = {
+  fargate_profiles = {
     default = {
       name = "my-fp"
       selectors = [
@@ -53,6 +54,5 @@ module "eks" {
       ]
     }
   }
-
-
+}
 }
