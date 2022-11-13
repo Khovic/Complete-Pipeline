@@ -36,3 +36,5 @@ Install the NGINX Ingress Controller. This installation will result in a Linode 
 -----------------------------------------------------------------------------
 
 Run pipeline
+
+aws eks --region eu-central-1 update-kubeconfig --name my-cluster

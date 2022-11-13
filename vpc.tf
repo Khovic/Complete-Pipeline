@@ -8,6 +8,11 @@ variable public_subnet_cidr_blocks {}
 
 data "aws_availability_zones" "azs" {}
 
+locals {
+  cluster_name = "my-cluster"
+}
+
+
 module "myapp-vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.18.1"
