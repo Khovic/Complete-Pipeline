@@ -1,10 +1,10 @@
 first deploy cluster via eksctl
   [eksctl create cluster -f eksctl-cluster.yaml]
 
+Create node-group-autoscaler-policy on AWS webui and attach it to nodeGroupIAM Role 
 create cluster-autoscaler-deployment.yaml and apply it
   [kubectl apply -f cluster-autoscaler-deployment.yaml]
 
-Create node-group-autoscaler-policy on AWS webui and attach it to nodeGroupIAM Role 
 
 create mysql-secret.yaml and apply it  
   [kubectl apply -f mysql-secret.yaml]
