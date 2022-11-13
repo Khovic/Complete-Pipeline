@@ -19,7 +19,7 @@ create additional storageclass "gp2.yaml" file and  apply it
 
 make sure DB_* and MYSQL_ROOT_PASSWORD env vars are set.
 create mysql-helm-values.yaml, and apply it
-  [envsubst < mysql-helm-values.yaml| helm install mysql bitnami/mysql  --values -]
+  [envsubst < mysql-helm-values.yaml | helm install mysql bitnami/mysql  --values -]
 
 create phpmyadmin-deployment.yaml and apply it
   [kubectl apply -f phpmyadmin-deployment.yaml]

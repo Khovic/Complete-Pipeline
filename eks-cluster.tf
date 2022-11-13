@@ -13,12 +13,6 @@ resource "aws_iam_role" "example" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "example-AmazonEKSFargatePodExecutionRolePolicy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSFargatePodExecutionRolePolicy"
-  role       = aws_iam_role.example.name
-}
-
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.30.3"
