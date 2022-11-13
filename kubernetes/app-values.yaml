@@ -22,7 +22,7 @@ serviceType: ClusterIP
 ingressNamespace: fpns
 
 ingressApiVersion: networking.k8s.io/v1
-ingressHost: ade58cdf374354753828ed4a81ef92bc-555752791.eu-central-1.elb.amazonaws.com
+ingressHost: af08df3c0ac204908a27dbc7943c7b02-997919324.eu-central-1.elb.amazonaws.com
 
 configName: java-app-config
 dbName: ${DB_NAME}
