@@ -22,4 +22,16 @@ module "eks" {
       instance_types = ["t2.medium"]
     }
   }
+
+   fargate_profiles = {
+    default = {
+      name = "my-fargate-profile"
+      selectors = [
+        {
+          namespace = "fpns"
+        }
+      ]
+    }
+  }
+
 }
