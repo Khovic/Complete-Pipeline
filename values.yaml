@@ -1,0 +1,18 @@
+architecture: replication
+auth:
+  rootPassword: secret-root-pass
+  database: my-app-db
+  username: my-user
+  password: my-pass
+
+# enable init container that changes the owner and group of the persistent volume mountpoint to runAsUser:fsGroup
+volumePermissions:
+  enabled: true
+
+secondary:
+  # 1 primary and 2 secondary replicas
+  replicaCount: 2
+  persistence:
+    accessModes: ["ReadWriteOnce"]
+    # storage class for EKS volumes
+    storageClass: gp2
