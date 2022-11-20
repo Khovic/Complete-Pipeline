@@ -6,12 +6,6 @@ auth:
   username: ${DB_USER}
   password: ${DB_PWD}
 
-primary:
-  persistence:
-    accessModes: ["ReadWriteOnce"]
-    # storage class for EKS volumes
-    storageClass: gp2
-
 volumePermissions:
   enabled: true
 
