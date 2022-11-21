@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "khovic-tf-project-bucket"
+    key = "tf-project/state.tfstate"
+  }
+  
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.30.3"
