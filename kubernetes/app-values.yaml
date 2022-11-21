@@ -3,8 +3,8 @@
 # rather this would serve as a template to be filled by the user and used locally. 
 
 appName: java-mysql-app
-appImage: 793430165820.dkr.ecr.eu-central-1.amazonaws.com/java-mysql-app
-appVersion: latest
+appImage: khovic/java-mysql-app
+appVersion: 2.0.16
 appReplicas: 3
 containerPort: 8080
 containerEnvVars:
@@ -22,7 +22,7 @@ serviceType: ClusterIP
 ingressNamespace: fpns
 
 ingressApiVersion: networking.k8s.io/v1
-ingressHost: af08df3c0ac204908a27dbc7943c7b02-997919324.eu-central-1.elb.amazonaws.com
+ingressHost: a0bc824f61a6b4bfb83532e9859dff5d-2012740929.eu-central-1.elb.amazonaws.com
 
 configName: java-app-config
 dbName: ${DB_NAME}

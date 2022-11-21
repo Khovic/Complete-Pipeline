@@ -1,10 +1,10 @@
 architecture: replication
 
 auth:
-  rootPassword: "${MYSQL_ROOT_PASSWORD}"
+  rootPassword: "123456"
   database: db_name
-  username: ${DB_USER}
-  password: ${DB_PWD}
+  username: username
+  password: password
 
 volumePermissions:
   enabled: true

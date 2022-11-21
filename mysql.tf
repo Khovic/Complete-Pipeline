@@ -28,7 +28,7 @@ resource "helm_release" "mysql" {
 
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "mysql"
-  version    = "9.4.3"
+  version    = "8.9.6"
 
   set {
     name  = "service.type"
