@@ -1,13 +1,3 @@
-terraform {
-  backend "s3" {
-    bucket = "khovic-tf-project-bucket"
-    key = "tf-project/state.tfstate"
-    region = "eu-central-1"
-    access_key = "<access-key>"
-    secret_key = "<secret-key>"
-  }
-  
-}
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
