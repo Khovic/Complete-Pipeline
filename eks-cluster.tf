@@ -3,6 +3,8 @@ terraform {
     bucket = "khovic-tf-project-bucket"
     key = "tf-project/state.tfstate"
     region = "eu-central-1"
+    access_key = "<access-key>"
+    secret_key = "<secret-key>"
   }
   
 }

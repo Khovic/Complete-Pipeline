@@ -25,7 +25,6 @@ provider "helm" {
 
 resource "helm_release" "mysql" {
   name       = "mysql"
-
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "mysql"
   version    = "8.9.6"
