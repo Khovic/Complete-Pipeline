@@ -8,7 +8,7 @@ spec:
   replicas: {{ .Values.appReplicas }}
   selector:
     matchLabels:
-      app: {{ .Values.appName }}
+            app: {{ .Values.appName }}
   template:
     metadata:
       labels:

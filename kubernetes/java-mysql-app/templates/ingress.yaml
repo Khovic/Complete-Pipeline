@@ -2,6 +2,10 @@ apiVersion: {{ .Values.ingressApiVersion }}
 kind: Ingress
 metadata:
   name: {{ .Values.appName }}-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "10"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
   namespace: {{ .Values.ingressNamespace }}
 spec:
   ingressClassName: nginx
