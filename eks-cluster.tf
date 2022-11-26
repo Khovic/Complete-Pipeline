@@ -30,6 +30,9 @@ module "eks" {
       selectors = [
         {
           namespace = "fpns"
+          labels = {
+          app = "java-mysql-app"
+                   }
         }
       ]
     }

@@ -7,6 +7,7 @@ appImage: khovic/java-mysql-app
 appVersion: 2.0.16
 appReplicas: 3
 containerPort: 8080
+
 containerEnvVars:
 - name: DB_USER
   value: ${DB_USER}
@@ -19,10 +20,10 @@ containerEnvVars:
 
 servicePort: 8080
 serviceType: ClusterIP
-ingressNamespace: fpns
 
+ingressNamespace: fpns
 ingressApiVersion: networking.k8s.io/v1
-ingressHost: a0bc824f61a6b4bfb83532e9859dff5d-2012740929.eu-central-1.elb.amazonaws.com
+ingressHost: aa16c1f6ed1ac4aa5be1bd52f264d48d-89541924.eu-central-1.elb.amazonaws.com
 
 configName: java-app-config
 dbName: ${DB_NAME}
