@@ -8,6 +8,9 @@ module "eks" {
 
   subnet_ids = module.myapp-vpc.private_subnets
   vpc_id = module.myapp-vpc.vpc_id
+  
+  depends_on = [
+  ]
 
   tags = {
     environment = "development"
@@ -38,4 +41,14 @@ module "eks" {
     }
   }
 
+}
+
+data "tls_certificate" "cert" {
+  url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+}
+
+module "ebs-csi-driver" {
+  source  = "DrFaust92/ebs-csi-driver/kubernetes"
+  version = "3.5.0"
+  oidc_url = resource.aws_iam_openid_connect_provider.openid_connect.url
 }
