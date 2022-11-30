@@ -45,6 +45,19 @@ module "eks" {
       ]
     }
   }
+    
+    node_security_group_additional_rules = {
+
+    https_ingress = {
+      description              = "Allow HTTPS"
+      protocol                 = "-1"
+      from_port                = 443
+      to_port                  = 443
+      type                     = "ingress"
+      source_cluster_security_group = true
+    }
+  
+
 }
 
 /*
