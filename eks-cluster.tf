@@ -54,7 +54,7 @@ module "eks" {
       from_port                = 443
       to_port                  = 443
       type                     = "ingress"
-      source_security_group_id = [module.eks.cluster_primary_security_group_id]
+      source_cluster_security_group = true
     }
   
     }
