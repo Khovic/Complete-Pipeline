@@ -16,6 +16,6 @@ secondary:
   persistence:
     accessModes: ["ReadWriteOnce"]
     # storage class for EKS volumes
-    storageClass: gp2
+    storageClass: gp3
 
 

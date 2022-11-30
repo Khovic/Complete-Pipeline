@@ -21,11 +21,12 @@ module "eks" {
     dev = {
       min_size     = 1
       max_size     = 3
-      desired_size = 3
+      desired_size = 2
       instance_types = ["t3.medium"]
-
-          iam_role_additional_policies = [
-      "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER"
+      #Additional policies required for ebs and autoscaling.
+      iam_role_additional_policies = [
+      "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER",
+      "arn:aws:iam::793430165820:policy/node-group-autoscale-policy"
     ]
     }
   }
@@ -45,12 +46,6 @@ module "eks" {
   }
 }
 
-#Attaching policy required for AWS_CSI_DRIVER
-# resource "aws_iam_role_policy_attachment" "AWS_CSI_DRIVER" {
-#  policy_arn = "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER"
-#  role       = aws_iam_role.module.eks.dev.arn
-#}
-
 resource "aws_iam_openid_connect_provider" "openid_connect" {
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = [data.tls_certificate.cert.certificates.0.sha1_fingerprint]
@@ -66,3 +61,13 @@ module "ebs-csi-driver" {
   version = "3.5.0"
   oidc_url = resource.aws_iam_openid_connect_provider.openid_connect.url
 }
+
+#
+#module "eks-cluster-autoscaler" {
+#  source  = "lablabs/eks-cluster-autoscaler/aws"
+#  version = "2.0.0"
+  # insert the 3 required variables here
+#  cluster_identity_oidc_issuer = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+#  cluster_identity_oidc_issuer_arn = 
+#  cluster_name = "my-cluster"
+#}
