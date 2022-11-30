@@ -24,6 +24,9 @@ module "eks" {
       desired_size = 3
       instance_types = ["t3.medium"]
 
+          iam_role_additional_policies = [
+      "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER"
+    ]
     }
   }
 
