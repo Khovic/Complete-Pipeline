@@ -56,6 +56,15 @@ module "eks" {
       type                     = "ingress"
       security_group_id        = module.eks.cluster_security_group_id
     }
+
+    app_ingress = {
+      description              = "Allow APP"
+      protocol                 = "-1"
+      from_port                = 8080
+      to_port                  = 8080
+      type                     = "ingress"
+      security_group_id        = module.eks.node_security_group_id
+    }
   
     }
 }
