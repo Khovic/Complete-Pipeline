@@ -43,10 +43,10 @@ module "eks" {
 }
 
 #Attaching policy required for AWS_CSI_DRIVER
-resource "aws_iam_role_policy_attachment" "AWS_CSI_DRIVER" {
-  policy_arn = "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER"
-  role       = aws_iam_role.module.eks.dev.arn
-}
+# resource "aws_iam_role_policy_attachment" "AWS_CSI_DRIVER" {
+#  policy_arn = "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER"
+#  role       = aws_iam_role.module.eks.dev.arn
+#}
 
 resource "aws_iam_openid_connect_provider" "openid_connect" {
   client_id_list  = ["sts.amazonaws.com"]
