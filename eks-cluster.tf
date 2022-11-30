@@ -29,6 +29,14 @@ module "eks" {
       "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER",
       "arn:aws:iam::793430165820:policy/node-group-autoscale-policy"
     ]
+        app_ingress = {
+      description              = "Allow APP"
+      protocol                 = "-1"
+      from_port                = 8080
+      to_port                  = 8080
+      type                     = "ingress"
+      security_group_id        = module.eks.node_security_group_id
+    }
     }
   }
 
@@ -57,14 +65,7 @@ module "eks" {
       security_group_id        = module.eks.cluster_security_group_id
     }
 
-    app_ingress = {
-      description              = "Allow APP"
-      protocol                 = "-1"
-      from_port                = 8080
-      to_port                  = 8080
-      type                     = "ingress"
-      security_group_id        = module.eks.node_security_group_id
-    }
+
   
     }
 }
