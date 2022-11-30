@@ -29,7 +29,6 @@ module "eks" {
       "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER",
       "arn:aws:iam::793430165820:policy/node-group-autoscale-policy"
     ]
-
     }
   }
 
@@ -55,13 +54,18 @@ module "eks" {
       from_port                = 8080
       to_port                  = 8080
       type                     = "ingress"
-      security_group_id        = module.eks.node_security_group_id
+      source_cluster_security_group = true
     }
-
-
   
     }
 }
+
+/*
+resource "aws_iam_openid_connect_provider" "openid_connect" {
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = [data.tls_certificate.cert.certificates.0.sha1_fingerprint]
+  url             = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+}*/
 
 data "tls_certificate" "cert" {
   url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
@@ -70,6 +74,7 @@ data "tls_certificate" "cert" {
 module "ebs-csi-driver" {
   source  = "DrFaust92/ebs-csi-driver/kubernetes"
   version = "3.5.0"
+  #oidc_url = resource.aws_iam_openid_connect_provider.openid_connect.url
   oidc_url = module.eks.cluster_oidc_issuer_url
 }
 
