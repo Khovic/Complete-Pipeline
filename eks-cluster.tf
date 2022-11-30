@@ -2,9 +2,10 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.30.3"
-
+   
   cluster_name = "my-cluster"
   cluster_version = "1.23"
+  enable_irsa = true
 
   subnet_ids = module.myapp-vpc.private_subnets
   vpc_id = module.myapp-vpc.vpc_id
@@ -62,12 +63,12 @@ module "ebs-csi-driver" {
   oidc_url = resource.aws_iam_openid_connect_provider.openid_connect.url
 }
 
-#
-#module "eks-cluster-autoscaler" {
-#  source  = "lablabs/eks-cluster-autoscaler/aws"
-#  version = "2.0.0"
-  # insert the 3 required variables here
-#  cluster_identity_oidc_issuer = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
-#  cluster_identity_oidc_issuer_arn = 
-#  cluster_name = "my-cluster"
-#}
+
+module "eks-cluster-autoscaler" {
+  source  = "lablabs/eks-cluster-autoscaler/aws"
+  version = "2.0.0"
+#   insert the 3 required variables here
+  cluster_identity_oidc_issuer = module.eks.my-cluster.cluster_oidc_issuer_url
+  cluster_identity_oidc_issuer_arn =  module.eks.my-cluster.oidc_provider_arn
+  cluster_name = "my-cluster"
+}
