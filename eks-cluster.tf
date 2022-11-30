@@ -54,7 +54,7 @@ module "eks" {
       from_port                = 8080
       to_port                  = 8080
       type                     = "ingress"
-      source_cluster_security_group = true
+      security_group_id        = module.eks.node_security_group_id
     }
   
     }
