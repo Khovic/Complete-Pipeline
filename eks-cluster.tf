@@ -80,5 +80,5 @@ resource "aws_security_group_rule" "app-rule" {
 }
 
 output "dev-sg" {
-  value = module.eks.aws_security_group.this
+  value = module.eks.node_security_group_id
 }
