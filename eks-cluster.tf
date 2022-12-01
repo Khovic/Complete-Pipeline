@@ -58,27 +58,8 @@ module "eks" {
       ]
     }
   }
-    
-    node_security_group_additional_rules = {
-
-    https_ingress = {
-      description              = "Allow APP"
-      protocol                 = "-1"
-      from_port                = 8080
-      to_port                  = 8080
-      type                     = "ingress"
-      source_cluster_security_group = true
-    }
-  
-    }
 }
 
-/*
-resource "aws_iam_openid_connect_provider" "openid_connect" {
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.cert.certificates.0.sha1_fingerprint]
-  url             = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
-}*/
 
 data "tls_certificate" "cert" {
   url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
@@ -87,17 +68,14 @@ data "tls_certificate" "cert" {
 module "ebs-csi-driver" {
   source  = "DrFaust92/ebs-csi-driver/kubernetes"
   version = "3.5.0"
-  #oidc_url = resource.aws_iam_openid_connect_provider.openid_connect.url
   oidc_url = module.eks.cluster_oidc_issuer_url
 }
 
-/*
-module "eks-cluster-autoscaler" {
-  source  = "lablabs/eks-cluster-autoscaler/aws"
-  version = "2.0.0"
-#   insert the 3 required variables here
-  cluster_identity_oidc_issuer = module.eks.my-cluster.cluster_oidc_issuer_url
-  cluster_identity_oidc_issuer_arn =  module.eks.my-cluster.oidc_provider_arn
-  cluster_name = "my-cluster"
+resource "aws_security_group_rule" "app-rule" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "tcp"
+  cidr_blocks       = module.myapp-vpc.private_subnets
+  security_group_id = module.eks.cluster_primary_security_group_id
 }
-*/
