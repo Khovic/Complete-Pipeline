@@ -80,7 +80,7 @@ resource "aws_security_group_rule" "app-rule" {
 }
 
 resource "aws_security_group_rule" "app-rule" {
-  type              = "ingress"
+  type              = "egress"
   from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
