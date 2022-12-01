@@ -76,7 +76,7 @@ resource "aws_security_group_rule" "app-rule" {
   to_port           = 8080
   protocol          = "tcp"
   cidr_blocks       = var.private_subnet_cidr_blocks
-  security_group_id = "sg-015a697a09aca3b8c"
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
 
 output "dev-sg" {
