@@ -70,7 +70,7 @@ module "ebs-csi-driver" {
   oidc_url = module.eks.cluster_oidc_issuer_url
 }
 
-resource "aws_security_group_rule" "app-rule-in" {
+resource "aws_security_group_rule" "mysql-rule-in" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
@@ -79,7 +79,7 @@ resource "aws_security_group_rule" "app-rule-in" {
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
 
-resource "aws_security_group_rule" "app-rule-out" {
+resource "aws_security_group_rule" "mysql-rule-out" {
   type              = "egress"
   from_port         = 3306
   to_port           = 3306
@@ -87,6 +87,25 @@ resource "aws_security_group_rule" "app-rule-out" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
+
+resource "aws_security_group_rule" "app-rule-in" {
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
+}
+
+resource "aws_security_group_rule" "app-rule-out" {
+  type              = "egress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
+}
+
 
 output "dev-sg" {
   value = module.eks.cluster_primary_security_group_id  
