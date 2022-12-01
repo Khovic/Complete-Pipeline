@@ -72,7 +72,7 @@ module "ebs-csi-driver" {
 
 resource "aws_security_group_rule" "app-rule-in" {
   type              = "ingress"
-  from_port         = 0
+  from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
@@ -81,7 +81,7 @@ resource "aws_security_group_rule" "app-rule-in" {
 
 resource "aws_security_group_rule" "app-rule-out" {
   type              = "egress"
-  from_port         = 0
+  from_port         = 3306
   to_port           = 3306
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
