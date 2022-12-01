@@ -70,7 +70,7 @@ module "ebs-csi-driver" {
   oidc_url = module.eks.cluster_oidc_issuer_url
 }
 
-resource "aws_security_group_rule" "app-rule" {
+resource "aws_security_group_rule" "app-rule-in" {
   type              = "ingress"
   from_port         = 3306
   to_port           = 3306
@@ -79,7 +79,7 @@ resource "aws_security_group_rule" "app-rule" {
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
 
-resource "aws_security_group_rule" "app-rule" {
+resource "aws_security_group_rule" "app-rule-out" {
   type              = "egress"
   from_port         = 3306
   to_port           = 3306
