@@ -73,7 +73,7 @@ module "ebs-csi-driver" {
 resource "aws_security_group_rule" "app-rule-in" {
   type              = "ingress"
   from_port         = 0
-  to_port           = 0
+  to_port           = 65535
   protocol          = "tcp"
   cidr_blocks       = var.private_subnet_cidr_blocks
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
@@ -82,7 +82,7 @@ resource "aws_security_group_rule" "app-rule-in" {
 resource "aws_security_group_rule" "app-rule-out" {
   type              = "egress"
   from_port         = 0
-  to_port           = 0
+  to_port           = 65535
   protocol          = "tcp"
   cidr_blocks       = var.private_subnet_cidr_blocks
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
