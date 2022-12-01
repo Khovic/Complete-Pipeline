@@ -33,7 +33,6 @@ module "eks" {
       from_port                = 8080
       to_port                  = 8080
       type                     = "ingress"
-      source_cluster_security_group = true
     }
   
     }
@@ -77,5 +76,5 @@ resource "aws_security_group_rule" "app-rule" {
   to_port           = 8080
   protocol          = "tcp"
   cidr_blocks       = var.private_subnet_cidr_blocks
-  security_group_id = module.eks.cluster_security_group_id
+  security_group_id = "sg-015a697a09aca3b8c"
 }
