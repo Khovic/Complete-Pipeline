@@ -88,5 +88,5 @@ output "dev-sg1" {
 }
 
 output "dev-sg2" {
-  value = module.eks.eks_managed_node_groups
+  value = module.eks.eks_managed_node_groups.dev.security_group_id
 }
