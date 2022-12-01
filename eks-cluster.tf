@@ -24,6 +24,19 @@ module "eks" {
       max_size     = 3
       desired_size = 2
       instance_types = ["t3.medium"]
+      
+    node_security_group_additional_rules = {
+
+    https_ingress = {
+      description              = "Allow APP"
+      protocol                 = "-1"
+      from_port                = 8080
+      to_port                  = 8080
+      type                     = "ingress"
+      source_cluster_security_group = true
+    }
+  
+    }
       #Additional policies required for ebs and autoscaling.
       iam_role_additional_policies = [
       "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER",
