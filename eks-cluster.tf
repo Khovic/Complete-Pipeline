@@ -80,8 +80,5 @@ resource "aws_security_group_rule" "app-rule" {
 }
 
 output "dev-sg" {
-  value = module.eks.node_security_group_id
-  value = module.eks.cluster_security_group_id
-  value = module.eks.cluster_primary_security_group_id
-  
+  value = module.eks.cluster_primary_security_group_id  
 }
