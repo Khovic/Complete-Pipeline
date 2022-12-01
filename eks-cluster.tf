@@ -78,3 +78,7 @@ resource "aws_security_group_rule" "app-rule" {
   cidr_blocks       = var.private_subnet_cidr_blocks
   security_group_id = "sg-015a697a09aca3b8c"
 }
+
+output "dev-sg" {
+  value = module.eks.security_group_ids
+}
