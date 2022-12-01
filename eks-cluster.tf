@@ -76,6 +76,6 @@ resource "aws_security_group_rule" "app-rule" {
   from_port         = 0
   to_port           = 65535
   protocol          = "tcp"
-  cidr_blocks       = module.myapp-vpc.private_subnets
+  cidr_blocks       = var.private_subnet_cidr_blocks
   security_group_id = module.eks.cluster_primary_security_group_id
 }
