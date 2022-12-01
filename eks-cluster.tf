@@ -83,6 +83,10 @@ output "dev-sg" {
   value = module.eks.cluster_primary_security_group_id  
 }
 
-output "dev-sg2" {
+output "dev-sg1" {
   value = module.eks.cluster_security_group_id  
+}
+
+output "dev-sg2" {
+  value = module.eks.eks_managed_node_groups
 }
