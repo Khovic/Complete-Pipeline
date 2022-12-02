@@ -53,6 +53,16 @@ data "tls_certificate" "cert" {
   url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
 }
 
+resource "aws_security_group_rule" "53-udp" {
+  type              = "ingress"
+  from_port         = -1
+  to_port           = 53
+  protocol          = "udp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
+}
+
+
 module "ebs-csi-driver" {
   source  = "DrFaust92/ebs-csi-driver/kubernetes"
   version = "3.5.0"
