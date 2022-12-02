@@ -53,20 +53,19 @@ data "tls_certificate" "cert" {
   url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
 }
 
-resource "aws_security_group_rule" "DNS_UDP" {
-  type              = "ingress"
-  from_port         = 53
-  to_port           = 53
-  protocol          = "udp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
-}
-
-
 module "ebs-csi-driver" {
   source  = "DrFaust92/ebs-csi-driver/kubernetes"
   version = "3.5.0"
   oidc_url = module.eks.cluster_oidc_issuer_url
+}
+
+resource "aws_security_group_rule" "DNS_TCP" {
+  type              = "ingress"
+  from_port         = 53
+  to_port           = 53
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
 
 resource "aws_security_group_rule" "mysql-rule-in" {
