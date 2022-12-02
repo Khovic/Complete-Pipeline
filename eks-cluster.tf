@@ -135,10 +135,9 @@ module "cluster_autoscaler" {
   source = "git::https://github.com/DNXLabs/terraform-aws-eks-cluster-autoscaler.git"
 
   enabled = true
-  # insert the 3 required variables here
 
-  cluster_identity_oidc_issuer      = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
-  cluster_identity_oidc_issuer_arn  = "arn:aws:iam::793430165820:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/CB48232CE591586A5FA9A26E270614BD"
+  cluster_identity_oidc_issuer     = module.eks_cluster.cluster_oidc_issuer_url
+  cluster_identity_oidc_issuer_arn = module.eks_cluster.oidc_provider_arn
   cluster_name                      = "my-cluster"
   aws_region                        = "eu-central-1"
 }
