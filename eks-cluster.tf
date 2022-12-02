@@ -22,8 +22,8 @@ module "eks" {
     dev = {
       min_size     = 1
       max_size     = 3
-      desired_size = 2
-      instance_types = ["t3.medium"]
+      desired_size = 3
+      instance_types = ["t2.small"]
       
       #Additional policies required for ebs and autoscaling.
       iam_role_additional_policies = [
@@ -136,8 +136,8 @@ module "cluster_autoscaler" {
 
   enabled = true
 
-  cluster_identity_oidc_issuer     = module.eks.cluster_oidc_issuer_url
-  cluster_identity_oidc_issuer_arn = module.eks.oidc_provider_arn
+  cluster_identity_oidc_issuer      = module.eks.cluster_oidc_issuer_url
+  cluster_identity_oidc_issuer_arn  = module.eks.oidc_provider_arn
   cluster_name                      = "my-cluster"
   aws_region                        = "eu-central-1"
 }
