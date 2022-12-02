@@ -138,7 +138,7 @@ module "cluster_autoscaler" {
   # insert the 3 required variables here
 
   cluster_identity_oidc_issuer      = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
-  cluster_identity_oidc_issuer_arn  = "arn:aws:iam::793430165820:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/F75AA50FDAA5859C78AEA438AB321477"
+  cluster_identity_oidc_issuer_arn  = "arn:aws:iam::793430165820:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/CB48232CE591586A5FA9A26E270614BD"
   cluster_name                      = "my-cluster"
   aws_region                        = "eu-central-1"
 }
