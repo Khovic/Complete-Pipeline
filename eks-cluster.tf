@@ -53,7 +53,7 @@ data "tls_certificate" "cert" {
   url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
 }
 
-resource "aws_security_group_rule" "53-udp" {
+resource "aws_security_group_rule" "DNS_UDP" {
   type              = "ingress"
   from_port         = -1
   to_port           = 53
