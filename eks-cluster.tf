@@ -55,7 +55,7 @@ data "tls_certificate" "cert" {
 
 resource "aws_security_group_rule" "DNS_UDP" {
   type              = "ingress"
-  from_port         = 4096-65535
+  from_port         = 0
   to_port           = 53
   protocol          = "udp"
   cidr_blocks       = ["0.0.0.0/0"]
