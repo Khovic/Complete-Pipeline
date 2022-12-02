@@ -131,13 +131,14 @@ resource "aws_security_group_rule" "app-nginx-rule-in" {
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
 
-module "eks-cluster-autoscaler" {
-  source  = "lablabs/eks-cluster-autoscaler/aws"
-  version = "2.0.0"
+module "cluster_autoscaler" {
+  source = "git::https://github.com/DNXLabs/terraform-aws-eks-cluster-autoscaler.git"
+
   enabled = true
   # insert the 3 required variables here
 
   cluster_identity_oidc_issuer      = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
   cluster_identity_oidc_issuer_arn  = "arn:aws:iam::793430165820:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/F75AA50FDAA5859C78AEA438AB321477"
-  cluster_name = "my-cluster"
+  cluster_name                      = "my-cluster"
+  aws_region                        = "eu-central-1"
 }
