@@ -59,6 +59,15 @@ module "ebs-csi-driver" {
   oidc_url = module.eks.cluster_oidc_issuer_url
 }
 
+resource "aws_security_group_rule" "DNS_UDP" {
+  type              = "ingress"
+  from_port         = 53
+  to_port           = 53
+  protocol          = "udp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
+}
+
 resource "aws_security_group_rule" "DNS_TCP" {
   type              = "ingress"
   from_port         = 53
