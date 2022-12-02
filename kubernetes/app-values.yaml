@@ -21,9 +21,9 @@ containerEnvVars:
 servicePort: 8080
 serviceType: ClusterIP
 
-ingressNamespace: fpns
+ingressNamespace: default
 ingressApiVersion: networking.k8s.io/v1
-ingressHost: a278260b24ce14b40a6fb931f916ab63-445012004.eu-central-1.elb.amazonaws.com
+ingressHost: a90f666c72add43d0a8b92ccb93cdde3-1201204129.eu-central-1.elb.amazonaws.com
 
 configName: java-app-config
 dbName: ${DB_NAME}
