@@ -1,5 +1,7 @@
 module "nginx-controller" {
   source  = "terraform-iaac/nginx-controller/helm"
+  controller_kind = "Deployment"
+  controller_daemonset_useHostPort = true
 
   additional_set = [
     {
