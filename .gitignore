@@ -2,7 +2,6 @@
 .terraform.lock.hcl
 .terraform/modules/modules.json
 .terraform.tfstate.lock.info
-aaa.tf
 terraform.tfstate
 terraform.tfstate.backup
 .terraform/modules/*
