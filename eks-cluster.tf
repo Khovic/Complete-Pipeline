@@ -25,17 +25,6 @@ module "eks" {
       desired_size = 2
       instance_types = ["t3.medium"]
       
-    node_security_group_additional_rules = {
-
-    https_ingress = {
-      description              = "Allow APP"
-      protocol                 = "-1"
-      from_port                = 8080
-      to_port                  = 8080
-      type                     = "ingress"
-    }
-  
-    }
       #Additional policies required for ebs and autoscaling.
       iam_role_additional_policies = [
       "arn:aws:iam::793430165820:policy/AWS_CSI_DRIVER",
@@ -105,6 +94,25 @@ resource "aws_security_group_rule" "app-rule-out" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
+
+resource "aws_security_group_rule" "app-nginx-rule-out" {
+  type              = "egress"
+  from_port         = 8443
+  to_port           = 8443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
+}
+
+resource "aws_security_group_rule" "app-nginx-rule-in" {
+  type              = "ingress"
+  from_port         = 8443
+  to_port           = 8443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
+}
+
 
 
 output "dev-sg" {
