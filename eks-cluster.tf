@@ -22,8 +22,8 @@ module "eks" {
     dev = {
       min_size     = 1
       max_size     = 3
-      desired_size = 2
-      instance_types = ["t3.medium"]
+      desired_size = 3
+      instance_types = ["t2.small"]
       
       #Additional policies required for ebs and autoscaling.
       iam_role_additional_policies = [
