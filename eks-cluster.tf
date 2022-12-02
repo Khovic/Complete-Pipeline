@@ -123,16 +123,12 @@ resource "aws_security_group_rule" "app-nginx-rule-in" {
   security_group_id = module.eks.eks_managed_node_groups.dev.security_group_id
 }
 
+module "eks-cluster-autoscaler" {
+  source  = "lablabs/eks-cluster-autoscaler/aws"
+  version = "2.0.0"
+  # insert the 3 required variables here
 
-
-output "dev-sg" {
-  value = module.eks.cluster_primary_security_group_id  
-}
-
-output "dev-sg1" {
-  value = module.eks.cluster_security_group_id  
-}
-
-output "dev-sg2" {
-  value = module.eks.eks_managed_node_groups.dev.security_group_id
+  cluster_identity_oidc_issuer      = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+  cluster_identity_oidc_issuer_arn  = "arn:aws:iam::793430165820:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/F75AA50FDAA5859C78AEA438AB321477"
+  cluster_name = "my-cluster"
 }
