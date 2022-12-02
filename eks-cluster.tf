@@ -125,6 +125,7 @@ resource "aws_security_group_rule" "app-nginx-rule-in" {
 module "eks-cluster-autoscaler" {
   source  = "lablabs/eks-cluster-autoscaler/aws"
   version = "2.0.0"
+  enabled = true
   # insert the 3 required variables here
 
   cluster_identity_oidc_issuer      = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
