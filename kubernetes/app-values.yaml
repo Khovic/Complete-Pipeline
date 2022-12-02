@@ -1,6 +1,4 @@
-# these are all the values required for a successful deployment of java-app on an LKE cluster.
-# in a real world scenerio this file would not be checked into a repository since username and passowrds are visible here.
-# rather this would serve as a template to be filled by the user and used locally. 
+# these are all the values required for a successful deployment of java-app on an EKS cluster.
 
 appName: java-mysql-app
 appImage: khovic/java-mysql-app
@@ -23,7 +21,7 @@ serviceType: ClusterIP
 
 ingressNamespace: default
 ingressApiVersion: networking.k8s.io/v1
-ingressHost: a90f666c72add43d0a8b92ccb93cdde3-1201204129.eu-central-1.elb.amazonaws.com
+ingressHost: a7173ccd0b62f4703abd76c8821f5ce3-2061138151.eu-central-1.elb.amazonaws.com
 
 configName: java-app-config
 dbName: ${DB_NAME}
