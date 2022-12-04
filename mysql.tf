@@ -39,7 +39,7 @@ resource "helm_release" "mysql" {
   ]
 
   depends_on = [
-    resource.aws_security_group_rule.mysql-rule-in
+    resource.aws_security_group_rule.mysql-rule-in ,
     resource.aws_security_group_rule.mysql-rule-out
   ]
 }
