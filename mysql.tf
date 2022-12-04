@@ -37,4 +37,9 @@ resource "helm_release" "mysql" {
   values = [
     "${file("mysql-helm-values.yaml")}"
   ]
+
+  depends_on = [
+    resource.aws_security_group_rule.mysql-rule-in
+    resource.aws_security_group_rule.mysql-rule-out
+  ]
 }
