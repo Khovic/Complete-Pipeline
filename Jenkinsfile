@@ -104,7 +104,6 @@ pipeline {
             }
 
             sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
-            sh 'kubectl apply -f mysql-secret.yaml'
             sh "envsubst < app-values.yaml | helm install ${APP_NAME} ${APP_NAME} -f - -n fpns"
 
          echo 'deployment stage executed'
