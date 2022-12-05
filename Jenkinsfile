@@ -54,20 +54,7 @@ pipeline {
         echo 'increment version stage executed'
       }
     }
-    
-    //Here it will run the application testing sequence if "Run Tests" is enabled when the pipeline is initiated
-    stage("test") {
-      when {
-          expression {
-            params.runTests
-          }
-        }
-      steps {
-        echo 'Executing testing stage....'
-        sleep 3 //seconds
-        echo 'Testing stage passed'
-      }
-    }    
+
 
     //Builds builds a docker image according to Dockerfile and pushes it to a temporary ECR for deployment in the next stage.
     //Reads version.txt created by increment-version.sh for tagging and exporting required ENV vars.
