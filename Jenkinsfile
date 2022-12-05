@@ -27,6 +27,16 @@ pipeline {
   
 
   stages { 
+
+       stage("provision cluster") {
+        steps {
+          script {
+            sh "terraform init"
+            sh "terraform --apply-auto-approve"
+          }
+        }
+    }    
+
     //Runs increment version script based on input from 'VerInc' choice parameter and prints the resulting build.gradle file.
     //Here it will run the application testing sequence if "Run Tests" is enabled when the pipeline is initiated
     stage("test") {
