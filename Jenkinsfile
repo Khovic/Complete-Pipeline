@@ -12,7 +12,7 @@ pipeline {
 
   environment {
     GIT_CREDENTIALS = credentials('GitKhovic')
-    GIT_REPO = "github.com/Khovic/complete-aws-k8s-pipeline.git"
+    GIT_REPO = "github.com/Khovic/terraform-project.git"
     APP_NAME = "java-mysql-app"
     IMAGE_REPO = "793430165820.dkr.ecr.eu-central-1.amazonaws.com"
     APP_IMAGE = "${IMAGE_REPO}/${APP_NAME}"
@@ -54,20 +54,7 @@ pipeline {
         echo 'increment version stage executed'
       }
     }
-    
-    //Here it will run the application testing sequence if "Run Tests" is enabled when the pipeline is initiated
-    stage("test") {
-      when {
-          expression {
-            params.runTests
-          }
-        }
-      steps {
-        echo 'Executing testing stage....'
-        sleep 3 //seconds
-        echo 'Testing stage passed'
-      }
-    }    
+
 
     //Builds builds a docker image according to Dockerfile and pushes it to a temporary ECR for deployment in the next stage.
     //Reads version.txt created by increment-version.sh for tagging and exporting required ENV vars.
