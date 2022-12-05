@@ -73,7 +73,7 @@ pipeline {
            
            withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')])
            { 
-            sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username $USER --password-stdin ${IMAGE_REPO}"
+            sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
             sh "docker push ${imageVar}"
            }
           }
