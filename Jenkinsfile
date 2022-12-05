@@ -1,6 +1,7 @@
 pipeline {
   agent any
   parameters {
+    booleanParam(name: 'applyTerraform', defaultValue: false, description: 'choose whether to apply terraform configuration')
     booleanParam(name: 'runTests', defaultValue: true, description: 'choose whether to execute test stage')
     choice(name: 'VerIncr', choices: ['patch', 'minor', 'major'], description: '')
   }
@@ -27,7 +28,11 @@ pipeline {
   
 
   stages { 
-
+    when {
+          expression {
+            params.applyTerraform
+          }
+        }
        stage("provision cluster") {
         steps {
           script {
