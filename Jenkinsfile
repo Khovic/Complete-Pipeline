@@ -28,12 +28,13 @@ pipeline {
   
 
   stages { 
-    when {
+
+       stage("provision cluster") {
+            when {
           expression {
             params.applyTerraform
           }
         }
-       stage("provision cluster") {
         steps {
           script {
             sh "terraform init"
