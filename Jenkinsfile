@@ -69,13 +69,10 @@ pipeline {
            sh "./gradlew build"
            sh "docker image prune -f -a"
            //from some reason jenkins doesn't play nice when multiple args are passed to docker build, this script bypasses that behavior.
-           sh "./Build-script.sh ${imageVar} ${version}"
-           
-           withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')])
-           { 
+           sh "./Build-script.sh ${imageVar} ${version}" 
+
             sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
             sh "docker push ${imageVar}"
-           }
           }
         }
         echo 'build stage executed'
@@ -105,12 +102,11 @@ pipeline {
                   echo error.getMessage()
                 }
             }
-            withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')])
-           { 
+
             sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
             sh 'kubectl apply -f mysql-secret.yaml'
             sh "envsubst < app-values.yaml | helm install ${APP_NAME} ${APP_NAME} -f - -n fpns"
-           }
+
          echo 'deployment stage executed'
         }
       }
