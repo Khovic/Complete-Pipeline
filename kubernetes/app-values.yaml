@@ -1,4 +1,4 @@
-# these are all the values required for a successful deployment of java-app on an EKS cluster.
+# these are all the values required for a successful deployment of java-mysql-app on an EKS cluster.
 
 appName: java-mysql-app
 appImage: khovic/java-mysql-app
