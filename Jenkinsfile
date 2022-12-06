@@ -120,7 +120,7 @@ pipeline {
             }
 
             sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
-            sh "envsubst < app-values.yaml | helm install ${APP_NAME} ${APP_NAME} -f - -n fpns"
+            sh "envsubst < app-values.yaml | helm install ${APP_NAME} ${APP_NAME} -f - "
 
          echo 'deployment stage executed'
         }
