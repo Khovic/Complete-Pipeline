@@ -21,7 +21,7 @@ serviceType: ClusterIP
 
 ingressNamespace: default
 ingressApiVersion: networking.k8s.io/v1
-ingressHost: ab121b29688644c3cb0f2a1e9310e6fb-1299341892.eu-central-1.elb.amazonaws.com
+ingressHost: a136941afc20f4908994570a3a992f3c-181654392.eu-central-1.elb.amazonaws.com
 
 configName: java-app-config
 dbName: ${DB_NAME}
