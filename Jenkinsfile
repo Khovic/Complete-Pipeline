@@ -10,7 +10,8 @@ pipeline {
     nodejs 'NodeJS'
   }
 
-
+  //Environment variables required for running the pipeline and starting the app. 
+  //Due to security, some of the variables are saved as credentials within Jenkins.
   environment {
     GIT_CREDENTIALS = credentials('GitKhovic')
     GIT_REPO = "github.com/Khovic/terraform-project.git"
@@ -26,9 +27,10 @@ pipeline {
     MYSQL_ROOT_PASSWORD= credentials('MYSQL_ROOT_PASSWORD')
   }
   
-
+  //If "applyTerraform" param is enabled, the pipeline will apply the latest terraform configuration.
+  //Usally this would be in a different repository and ran by a different pipeline, but for the sake of 
+  //simplicity and readability we chose to have it as part of one repository and one pipline
   stages { 
-
        stage("provision cluster") {
             when {
           expression {
@@ -37,8 +39,10 @@ pipeline {
         }
         steps {
           script {
+            dir("Terraform") {
             sh "terraform init"
             sh "terraform apply --auto-approve"
+            }
           }
         }
     }    
@@ -111,7 +115,7 @@ pipeline {
             } 
             catch (err) {
               try{
-                  sh "helm delete ${APP_NAME} -n fpns"
+                  sh "helm delete ${APP_NAME}"
                   echo err.getMessage()
               }
               catch (error) {
@@ -161,8 +165,8 @@ pipeline {
            { 
             def version = readFile(file: 'version.txt')
             sh "echo $PASS | docker login -u $USER --password-stdin"
-            sh "docker tag ${APP_IMAGE}:latest khovic/java-mysql-app:${version}"
-            sh "docker push khovic/java-mysql-app:${version}"
+            sh "docker tag ${APP_IMAGE}:latest ${APP_IMAGE}:${version}"
+            sh "docker push ${APP_IMAGE}:${version}"
 
            }
             echo 'image pushed to repo'
