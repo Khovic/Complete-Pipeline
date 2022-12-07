@@ -5,3 +5,4 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terraform/modules/*
+Terraform/mysql-helm-values.yaml
