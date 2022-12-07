@@ -40,6 +40,7 @@ pipeline {
         steps {
           script {
             dir("Terraform") {
+            sh "envsubst < app-values.yaml > mysql-helm-values.yaml"
             sh "terraform init"
             sh "terraform apply --auto-approve"
             }

@@ -1,0 +1,20 @@
+architecture: replication
+
+auth:
+  rootPassword: ${MYSQL_ROOT_PASSWORD}
+  database: ${DB_NAME}
+  username: ${DB_USER}
+  password: ${DB_PWD}
+
+volumePermissions:
+  enabled: true
+
+
+secondary:
+  name: secondary
+  replicaCount: 2
+  persistence:
+    accessModes: ["ReadWriteOnce"]
+    # storage class for EKS volumes
+    storageClass: gp2
+
