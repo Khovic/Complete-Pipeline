@@ -121,8 +121,8 @@ pipeline {
 
             sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
             // we will export the ingress address to "INGRESS_ADDRESS" env var
-            sh """export INGRESS_ADDRESS="$(kubectl get svc -n kube-system | grep LoadBalancer | awk -F ' ' '{print $4}')"""
-            sh "envsubst < app-values.yaml | helm install ${APP_NAME} ${APP_NAME} -f - "
+            sh """export INGRESS_ADDRESS="$(kubectl get svc -n kube-system | grep LoadBalancer | awk -F ' ' '{print $4}')""""
+            sh """envsubst < app-values.yaml | helm install ${APP_NAME} ${APP_NAME} -f - """
 
          echo 'deployment stage executed'
         }
