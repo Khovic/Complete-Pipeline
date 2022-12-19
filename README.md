@@ -20,5 +20,4 @@ Afterwards, The pipeline will perform the following
  - If deployment successful it will push the dockerized app to a public DockerHub repository.
  - Update github /app/build.gradle with the latest app version.
  
- 
- 
+For more details I recommend checking the Jenkinsfile
