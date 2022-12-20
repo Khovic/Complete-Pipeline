@@ -12,8 +12,8 @@ Once set up, the pipeline will apply provision infrastracture for our EKS cluste
  - Create necessary security group rules.
  - Attach policies (as found in Kubernetes/AWS-Policies/) to the cluster autoscaler and CSI driver.
 
-Afterwards, The pipeline will perform the following
- - Run MYSQL stateful set with 1 primary and 2 secondary pods, as well it will provision GP2 storage for our MYSQL database.
+In addition, The pipeline will perform the following
+ - Run MYSQL stateful set with 1 primary and 2 secondary pods, as well it will provision GP2 storage for our database.
  - Automatically increment version of our app.
  - Build the app (as found in /app/) and create a docker image for further deployment of our app, then push it to a private ECR.
  - Deploy the app to our cluster in a 3 pod replicaset for high availability, using our own helm chart (java-mysql-app as found in Kubernetes/).
