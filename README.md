@@ -11,6 +11,7 @@ Once set up, the pipeline will apply provision infrastracture for our EKS cluste
  - Create VPC for our cluster.
  - Create necessary security group rules.
  - Attach policies (as found in Kubernetes/AWS-Policies/) to the cluster autoscaler and CSI driver.
+ - Use env.vars for sensitive data to eliminate security risks.
 
 In addition, The pipeline will perform the following
  - Run MYSQL stateful set with 1 primary and 2 secondary pods, as well it will provision GP2 storage for our database.
