@@ -3,7 +3,7 @@ pipeline {
   parameters {
     booleanParam(name: 'applyTerraform', defaultValue: false, description: 'choose whether to apply terraform configuration')
     booleanParam(name: 'runTests', defaultValue: true, description: 'choose whether to execute test stage')
-    choice(name: 'VerIncr', choices: ['patch', 'minor', 'major'], description: '')
+    choice(name: 'VerIncr', choices: ['patch', 'minor', 'major'], description: 'choose the kind of version increment')
   }
 
   tools {
