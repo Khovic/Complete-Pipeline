@@ -1,7 +1,7 @@
 # Complete-Pipeline
 
 This project is an example of a complete CI\CD pipeline in jenkins, and demonstrates use of Jenkins, Terraform, Kubernetes, Docker, Git, AWS, Bash.
-In summary: we want to run a JS web app that requires MYSQL, the pipeline will automatically set up all the neccessary infrastructure for running our app,
+In summary: we want to run a Java web app that requires MYSQL, the pipeline will automatically set up all the neccessary infrastructure for running our app,
 reduce uneccessary costs while keeping our app highly available with minimum downtimes.
 
 Once set up, the pipeline will apply provision infrastracture for our EKS cluster, the cluster consists of:
