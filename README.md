@@ -1,4 +1,4 @@
-# terraform-project
+# Complete-Pipeline
 
 This project is an example of a complete CI\CD pipeline in jenkins, and demonstrates use of Jenkins, Terraform, Kubernetes, Docker, Git, AWS, Bash.
 In summary: we want to run a JS web app that requires MYSQL, the pipeline will automatically set up all the neccessary infrastructure for running our app,
