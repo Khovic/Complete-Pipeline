@@ -11,9 +11,12 @@ valid=true
 
 if [ $1 == 'major' ]
 then
+   patch = 0
+   minor = 0
    version_new=$(($major+1)).$minor.$patch
 elif [ $1 == 'minor' ]
 then
+   patch = 0
    version_new=$major.$(($minor+1)).$patch
 elif [ $1 == 'patch' ]
 then 
