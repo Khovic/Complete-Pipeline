@@ -3,6 +3,7 @@ pipeline {
   parameters {
     booleanParam(name: 'applyTerraform', defaultValue: false, description: 'choose whether to apply terraform configuration')
     booleanParam(name: 'runTests', defaultValue: true, description: 'choose whether to execute test stage')
+    booleanParam(name: 'destroyTerraform', defaultValue: false, description: 'choose whether to terraform destroy')
     choice(name: 'VerIncr', choices: ['patch', 'minor', 'major'], description: 'choose the kind of version increment')
   }
 
@@ -47,6 +48,23 @@ pipeline {
           }
         }
     }    
+       //will destory terraform infrastracture
+       stage("destroy cluster") {
+            when {
+          expression {
+            params.destroyTerraform
+          }
+        }
+        steps {
+          script {
+            dir("Terraform") {
+            sh "terraform init"
+            sh "terraform destroy --auto-approve"
+            }
+          }
+        }
+    }    
+
 
     //Runs increment version script based on input from 'VerInc' choice parameter and prints the resulting build.gradle file.
     //Here it will run the application testing sequence if "Run Tests" is enabled when the pipeline is initiated
