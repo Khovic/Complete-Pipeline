@@ -13,11 +13,11 @@ if [ $1 == 'major' ]
 then
    patch = 0
    minor = 0
-   version_new=$(($major+1)).$minor.$patch
+   version_new=$(($major+1)).0.0
 elif [ $1 == 'minor' ]
 then
    patch = 0
-   version_new=$major.$(($minor+1)).$patch
+   version_new=$major.$(($minor+1)).0
 elif [ $1 == 'patch' ]
 then 
    version_new=$major.$minor.$(($patch+1))
