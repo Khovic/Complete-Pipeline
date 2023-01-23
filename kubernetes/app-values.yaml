@@ -2,7 +2,7 @@
 
 appName: java-mysql-app
 appImage: khovic/java-mysql-app
-appVersion:
+appVersion: 2.0.27
 appReplicas: 3
 containerPort: 8080
 
