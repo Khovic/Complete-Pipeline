@@ -1,8 +1,8 @@
 # these are all the values required for a successful deployment of java-mysql-app on an EKS cluster.
 
 appName: java-mysql-app
-appImage: khovic/java-mysql-app
-appVersion: 2.0.27
+appImage: 793430165820.dkr.ecr.eu-central-1.amazonaws.com/java-mysql-app
+appVersion: 3.0.33
 appReplicas: 3
 containerPort: 8080
 
