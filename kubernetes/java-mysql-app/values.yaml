@@ -2,7 +2,7 @@
 
 appName: appName
 appImage: khovic/node-js-app
-appVersion: latest
+appVersion: 2.0.27
 appReplicas: 1
 containerPort: 8080 
 containerEnvVars:
