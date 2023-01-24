@@ -18,6 +18,7 @@ pipeline {
     GIT_REPO = "github.com/Khovic/Complete-Pipeline.git"
     APP_NAME = "java-mysql-app"
     IMAGE_REPO = "793430165820.dkr.ecr.eu-central-1.amazonaws.com"
+    DOCKER_IMAGE_REPO = "khovic/java-mysql-app"
     APP_IMAGE = "${IMAGE_REPO}/${APP_NAME}"
     EKS_REGION = 'eu-central-1'
     EKS_CLUSTER_NAME = 'my-cluster'
@@ -184,7 +185,7 @@ pipeline {
            { 
             def version = readFile(file: 'version.txt')
             sh "echo $PASS | docker login -u $USER --password-stdin"
-            sh "docker tag ${APP_IMAGE}:latest ${APP_IMAGE}:${version}"
+            sh "docker tag ${APP_IMAGE}:latest ${DOCKER_APP_IMAGE}:${version}"
             sh "docker push ${APP_IMAGE}:${version}"
 
            }
