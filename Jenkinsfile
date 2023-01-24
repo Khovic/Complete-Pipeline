@@ -188,7 +188,8 @@ pipeline {
             def version = readFile(file: 'version.txt')
             sh "echo $PASS | docker login -u $USER --password-stdin"
             def source_image = "${APP_IMAGE}:${version}"
-            def target_image = "khovic/java-mysql-app:${version}"
+            def target_image = '''khovic/java-mysql-app:${version}'''
+            //def command = "docker tag ${source_image} ${target_image}"
             //sh "docker tag ${APP_IMAGE}:${version} khovic/java-mysql-app:${version}"
             sh "docker tag ${source_image} ${target_image}"
             sh "docker push ${DOCKER_IMAGE_REPO}:${version}"
