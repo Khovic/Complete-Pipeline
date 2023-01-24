@@ -191,7 +191,7 @@ pipeline {
             def target_image = '''khovic/java-mysql-app:${version}'''
             def command = "${source_image} ${target_image}"
             //sh "docker tag ${APP_IMAGE}:${version} khovic/java-mysql-app:${version}"
-            sh "docker tag ${command}"
+            sh "echo ${command}"
             sh "docker push ${DOCKER_IMAGE_REPO}:${version}"
 
            }
