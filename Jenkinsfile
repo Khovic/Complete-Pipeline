@@ -190,6 +190,8 @@ pipeline {
             def source_image = "${APP_IMAGE}:${version}"
             def target_image = '''khovic/java-mysql-app:${version}'''
             env.TARGET = target_image
+            sh "echo ${TARGET}"
+
             def command = "${source_image} ${TARGET}"
             
             //sh "docker tag ${APP_IMAGE}:${version} khovic/java-mysql-app:${version}"
