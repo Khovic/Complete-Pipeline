@@ -189,7 +189,9 @@ pipeline {
             sh "echo $PASS | docker login -u $USER --password-stdin"
             def source_image = "${APP_IMAGE}:${version}"
             def target_image = '''khovic/java-mysql-app:${version}'''
-            def command = "${source_image} ${target_image}"
+            env.TARGET = target_image
+            def command = "${source_image} ${TARGET}"
+            
             //sh "docker tag ${APP_IMAGE}:${version} khovic/java-mysql-app:${version}"
             sh "echo ${command}"
             sh "docker push ${DOCKER_IMAGE_REPO}:${version}"
