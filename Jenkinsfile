@@ -111,7 +111,7 @@ pipeline {
            sh "docker image prune -f -a"
           
            //from some reason jenkins doesn't play nice when multiple args are passed to docker build, this script bypasses that behavior.
-           //sh "./Build-script.sh ${imageVar} ${version}" 
+           sh "./Build-script.sh ${imageVar} ${version}" 
            //sh "docker images"
            //sh "aws ecr get-login-password --region ${EKS_REGION} | docker login --username AWS --password-stdin ${IMAGE_REPO}"
            //sh "docker push 793430165820.dkr.ecr.eu-central-1.amazonaws.com/java-mysql-app:3.1.5"
