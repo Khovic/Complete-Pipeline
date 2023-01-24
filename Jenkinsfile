@@ -194,9 +194,7 @@ pipeline {
 
             def command = "${source_image} ${TARGET}"
             
-            sh "docker tag ${command}"
-            sh "echo ${target_image}"
-            sh "echo ${command}"
+            sh "docker tag ${source_image} ${TARGET}"
             sh "docker push ${DOCKER_IMAGE_REPO}:${version}"
 
            }
