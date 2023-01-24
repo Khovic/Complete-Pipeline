@@ -15,7 +15,7 @@ ENV	DB_USER=${DB_USER}
 RUN mkdir /opt/app
 
 ARG VERSION=0.0.0
-COPY /app/build/libs/bootcamp-java-mysql-project-3.1.15.jar /opt/app
+COPY /app/build/libs/bootcamp-java-mysql-project-3.1.5.jar /opt/app
 WORKDIR /opt/app
-CMD java -jar bootcamp-java-mysql-project-3.1.15.jar
+CMD java -jar bootcamp-java-mysql-project-3.1.5.jar
 
