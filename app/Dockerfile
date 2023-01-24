@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-oracle
 EXPOSE 8080
 
-ARG ver=0.0.0
+ARG VERSION=0.0.0
 ENV	VERSION=${VERSION}
 ARG DB_NAME=database
 ENV DB_NAME=${DB_NAME}
