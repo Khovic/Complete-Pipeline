@@ -20,6 +20,7 @@ pipeline {
     IMAGE_REPO = "793430165820.dkr.ecr.eu-central-1.amazonaws.com"
     DOCKER_IMAGE_REPO = "khovic/java-mysql-app"
     APP_IMAGE = "${IMAGE_REPO}/${APP_NAME}"
+    DOCKER_APP_IMAGE = "${DOCKER_IMAGE_REPO}/${APP_NAME}"
     EKS_REGION = 'eu-central-1'
     EKS_CLUSTER_NAME = 'my-cluster'
     DB_USER = credentials('DB_USER')
