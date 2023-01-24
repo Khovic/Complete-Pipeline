@@ -187,7 +187,7 @@ pipeline {
             def version = readFile(file: 'version.txt')
             sh "echo $PASS | docker login -u $USER --password-stdin"
             sh "docker tag ${APP_IMAGE}:latest ${DOCKER_APP_IMAGE}:${version}"
-            sh "docker push ${APP_IMAGE}:${version}"
+            sh "docker push ${DOCKER_APP_IMAGE}:${version}"
 
            }
             echo 'image pushed to repo'
