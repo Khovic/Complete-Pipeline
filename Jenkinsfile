@@ -125,7 +125,8 @@ pipeline {
     stage("deploy") {
       steps {
         script{
-          
+          def version = readFile(file: 'app/version.txt')
+          env.VERSION = version
           dir("kubernetes"){
             
             //this needs to be run only once:

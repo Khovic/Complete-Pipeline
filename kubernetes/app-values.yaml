@@ -2,7 +2,7 @@
 
 appName: java-mysql-app
 appImage: 793430165820.dkr.ecr.eu-central-1.amazonaws.com/java-mysql-app
-appVersion: latest
+appVersion: ${VERSION}
 appReplicas: 3
 containerPort: 8080
 
