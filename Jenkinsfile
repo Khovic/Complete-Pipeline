@@ -104,6 +104,7 @@ pipeline {
         script{
           dir("app") {
            def version = readFile(file: 'version.txt')
+           env.VERSION = version
            sh "export VERSION=${version}"
            def imageVar = "${APP_IMAGE}:${version}"
            //sh "rm -r build/libs"
