@@ -106,6 +106,8 @@ pipeline {
            def version = readFile(file: 'version.txt')
            sh "export VERSION=${version}"
            def imageVar = "${APP_IMAGE}:${version}"
+           sh "sudo rm -r build/libs"
+           sh "sudo mkdir build/libs"
            sh "./gradlew build"
            sh "ls build/libs/"
            sh "docker image prune -f -a"
