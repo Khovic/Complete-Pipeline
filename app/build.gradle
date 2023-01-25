@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.example'
-version '3.1.25'
+version '3.1.26'
 
 sourceCompatibility = 1.8
 
