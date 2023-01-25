@@ -178,7 +178,8 @@ pipeline {
     
 
     //Assuming all previous stages were successful, this stage will push the final and working image to a more permenant Dockerhub repository.
-    //The image would be tagged khovic/java-mysql-app:${VERSION}
+    //The image would be tagged ${DOCKER_IMAGE_REPO}:${VERSION}
+    //Due to weird behavior by jenkins when multiple parameters are passed to shell, we will use tag-script.sh to tag the image
     stage("push Image") {
       steps {
         script{
