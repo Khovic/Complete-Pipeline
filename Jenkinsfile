@@ -192,7 +192,8 @@ pipeline {
             env.TARGET = target_image
             env.SOURCE = source_image
             sh "echo $TARGET"
-            sh "docker tag $SOURCE $TARGET"
+            sh "echo $SOURCE"
+            sh "echo $SOURCE $TARGET"
             //def command = "${source_image} ${TARGET}"
             //echo "${command}"
             //sh "docker tag ${source_image} ${TARGET}"
