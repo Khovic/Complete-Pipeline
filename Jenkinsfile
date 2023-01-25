@@ -193,11 +193,7 @@ pipeline {
             env.SOURCE = source_image
             sh "echo $TARGET"
             sh "echo $SOURCE"
-            sh "echo $SOURCE $TARGET"
-            //def command = "${source_image} ${TARGET}"
-            //echo "${command}"
-            //sh "docker tag ${source_image} ${TARGET}"
-            //sh "docker push ${DOCKER_IMAGE_REPO}:${version}"
+            sh "./tag-script.sh"
            }
             echo 'image pushed to repo'
           }    
