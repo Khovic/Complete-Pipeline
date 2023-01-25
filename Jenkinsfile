@@ -194,6 +194,7 @@ pipeline {
             sh "echo $TARGET"
             sh "echo $SOURCE"
             sh "./tag-script.sh"
+            sh "docker push $TARGET"
            }
             echo 'image pushed to repo'
           }    
