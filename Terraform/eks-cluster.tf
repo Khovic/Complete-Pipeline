@@ -22,7 +22,7 @@ module "eks" {
     dev = {
       min_size     = 1
       max_size     = 3
-      desired_size = 3
+      desired_size = 2
       instance_types = ["t2.small"]
       
       #Additional policies required for ebs and autoscaling.
